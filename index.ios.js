@@ -13,12 +13,14 @@ import React, {
 } from 'react-native';
 
 import NavBar from './components/NavBar';
+import Search from './components/Search';
 
 class surge extends Component {
   render() {
     return (
       <View style={styles.container}>
         <NavBar />
+        <Search />
       </View>
     );
   }
@@ -27,6 +29,8 @@ class surge extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#6ED8FA',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     flex: 1,
   },
   welcome: {
