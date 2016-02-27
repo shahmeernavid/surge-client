@@ -20,13 +20,11 @@ class CloudItem extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#9BC2CF',
     height: 20,
     position: 'absolute',
     width: 100,
   },
   content: {
-    borderRadius: 4,
     color: '#FFFFFF',
     padding: 4,
     textAlign: 'center',

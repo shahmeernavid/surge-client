@@ -16,9 +16,7 @@ import Cloud from './components/Cloud';
 import NavBar from './components/NavBar';
 import Search from './components/Search';
 
-class surge extends Component {
-  render() {
-    const items = [
+const items = [
       'Burger',
       'Pizza',
       'Steak',
@@ -66,11 +64,25 @@ class surge extends Component {
       'Pho',
     ];
 
+class surge extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      items: items
+    };
+  }
+
+  render() {
+    const typeHandler = query => {
+      this.setState({items: items.filter(item => item.startsWith(query))});
+    };
+
     return (
       <View style={styles.container}>
         <NavBar />
         <Cloud items={items} />
-        <Search />
+        <Search onType={typeHandler} />
       </View>
     );
   }
