@@ -6,12 +6,15 @@
 import React, {
   AppRegistry,
   Component,
+  PickerIOS,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 
 import Cloud from './components/Cloud';
+import NavBar from './components/NavBar';
+import Search from './components/Search';
 
 class surge extends Component {
   render() {
@@ -65,7 +68,9 @@ class surge extends Component {
 
     return (
       <View style={styles.container}>
+        <NavBar />
         <Cloud items={items} />
+        <Search />
       </View>
     );
   }
@@ -73,10 +78,10 @@ class surge extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#6ED8FA',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
 });
 
