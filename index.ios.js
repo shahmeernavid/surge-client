@@ -12,15 +12,77 @@ import React, {
   View,
 } from 'react-native';
 
+import Cloud from './components/Cloud';
 import NavBar from './components/NavBar';
 import Search from './components/Search';
 
+const items = [
+      'Burger',
+      'Pizza',
+      'Steak',
+      'Pasta',
+      'Chinese',
+      'Japenese',
+      'Ramen',
+      'Noodles',
+      'Soup',
+      'Pizza',
+      'Burger',
+      'Chicken',
+      'Salad',
+      'Sandwich',
+      'Pasta',
+      'Fruits',
+      'Candy',
+      'Pho',
+      'Pizza',
+      'Burger',
+      'Chicken',
+      'Salad',
+      'Sandwich',
+      'Pasta',
+      'Fruits',
+      'Candy',
+      'Pho',
+      'Pizza',
+      'Burger',
+      'Chicken',
+      'Salad',
+      'Sandwich',
+      'Pasta',
+      'Fruits',
+      'Candy',
+      'Pho',
+      'Pizza',
+      'Burger',
+      'Chicken',
+      'Salad',
+      'Sandwich',
+      'Pasta',
+      'Fruits',
+      'Candy',
+      'Pho',
+    ];
+
 class surge extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      items: items
+    };
+  }
+
   render() {
+    const typeHandler = query => {
+      this.setState({items: items.filter(item => item.startsWith(query))});
+    };
+
     return (
       <View style={styles.container}>
         <NavBar />
-        <Search />
+        <Cloud items={items} />
+        <Search onType={typeHandler} />
       </View>
     );
   }
@@ -32,16 +94,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     flex: 1,
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
 

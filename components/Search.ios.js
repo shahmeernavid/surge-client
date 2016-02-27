@@ -33,7 +33,7 @@ const Search = React.createClass({
         <View style={styles.textInputWrapper}>
           <TextInput
             style={styles.textInput}
-            onChangeText={text => this.setState({text})}
+            onChangeText={(text) => {this.setState({text}); this.props.onType(text)}}
             value={this.state.text}
           />
         </View>
