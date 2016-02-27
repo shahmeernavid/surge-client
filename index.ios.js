@@ -28,7 +28,7 @@ class surge extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#6ED8FA',
+    backgroundColor: '#532f8c',
     flexDirection: 'column',
     justifyContent: 'space-between',
     flex: 1,
