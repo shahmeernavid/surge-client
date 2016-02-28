@@ -65,9 +65,9 @@ const FinalSelect = React.createClass({
         <TouchableOpacity onPress={() => {
           this.setState({loading: true});
           // Make request.
-          setTimeout(() => {
+          DataFetcher.orderUp([this.props.word, ...this.state.selectedWords], () => {
             this.props.navigator.resetTo(Routes[3]);
-          }, 1000);
+          });
         }}>
           <Text style={styles.done}>Order Already!</Text>
         </TouchableOpacity>

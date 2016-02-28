@@ -12,6 +12,7 @@ import React, {
   StyleSheet,
   Text,
   View,
+  ActivityIndicatorIOS,
 } from 'react-native';
 
 import DataFetcher from '../shit/DataFetcher';
@@ -25,13 +26,32 @@ export default class surge extends Component {
     super();
 
     this.state = {
-      items: DataFetcher.data.keywords,
+      items: [],
+      loading: true,
     };
   }
 
+  componentDidMount() {
+    DataFetcher.fetchKeywords(() => {
+      this.setState({loading: false, items: DataFetcher.getKeywords()})
+    });
+  }
+
   render() {
+    if (this.state.loading) {
+      return (
+        <View style={styles.container}>
+          <ActivityIndicatorIOS
+            animating={true}
+            style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}
+            size="large"
+          />
+        </View>
+      );
+    }
+
     const typeHandler = query => {
-      this.setState({items: DataFetcher.data.keywords.filter(item => item.startsWith(query.toLowerCase()))});
+      this.setState({items: DataFetcher.getKeywords().filter(item => item.startsWith(query.toLowerCase()))});
     };
 
     return (
@@ -40,12 +60,8 @@ export default class surge extends Component {
         <Text style={styles.title}>Hungry for awesomeness?</Text>
         <ShahmeerCloud words={this.state.items} click={(word) => {
           let props = {word};
-          if (DataFetcher.data.modifiers[word]) {
-            this.props.navigator.push({...Routes[1], props});
-          }
-          else {
-            this.props.navigator.push({...Routes[2], props});
-          }
+          this.props.navigator.push({...Routes[1], props});
+
 
         }} />
       </View>

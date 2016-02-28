@@ -1,6 +1,7 @@
 'use strict';
 
 import React, {
+  ActivityIndicatorIOS,
   Image,
   StyleSheet,
   Text,
@@ -17,14 +18,35 @@ import NavBar from '../components/NavBar2';
 const KeywordSelected = React.createClass({
   getInitialState: function() {
     return {
-      filteredItems: DataFetcher.data.modifiers[this.props.word] || [],
+      filteredItems: [],
       selectedWords: [],
+      loading: true,
     };
   },
 
+  componentDidMount: function() {
+    DataFetcher.fetchModifiers(this.props.word, () => {
+      console.log(DataFetcher.getModifiersForKeyword(this.props.word));
+      this.setState({loading: false, filteredItems: DataFetcher.getModifiersForKeyword(this.props.word)})
+    });
+  },
+
   render: function() {
+    if (this.state.loading){
+      return (
+        <View style={styles.container}>
+          <ActivityIndicatorIOS
+            animating={true}
+            style={{height: 80, alignItems: 'center', justifyContent: 'center', flex: 1}}
+            size="large"
+          />
+        </View>
+      );
+    }
+
+
     const typeHandler = query => {
-      this.setState({filteredItems: DataFetcher.data.modifiers[this.props.word].filter(
+      this.setState({filteredItems: DataFetcher.getModifiersForKeyword(this.props.word).filter(
           item => item.startsWith(query.toLowerCase()))});
     };
 

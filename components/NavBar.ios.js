@@ -21,10 +21,15 @@ const NavBar = React.createClass({
     if (!this.state.clicked) {
       return (
           <View style={styles.container}>
-            <Image
-              style={styles.profile}
-              source={require('../icons/profile.png')}
-            />
+            <TouchableOpacity onPress={() => {
+              DataFetcher.isOpen = true;
+              global.root.forceUpdate();
+            }}>
+              <Image
+                style={styles.profile}
+                source={require('../icons/profile.png')}
+              />
+            </TouchableOpacity>
             <Text style={styles.text}>
               SURGE
             </Text>
