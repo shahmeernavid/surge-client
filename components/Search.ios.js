@@ -32,6 +32,7 @@ const Search = React.createClass({
       inner = (
         <View style={styles.textInputWrapper}>
           <TextInput
+            defaultValue="Whatcha looking for?"
             style={styles.textInput}
             onChangeText={(text) => {this.setState({text}); this.props.onType(text)}}
             value={this.state.text}

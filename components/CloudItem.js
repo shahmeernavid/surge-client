@@ -6,12 +6,18 @@ import React, {
   View
 } from 'react-native';
 
+const WiggleMove = 1;
+
 class CloudItem extends Component {
   render() {
-    const {item, left, top} = this.props;
+    let {item, left, top, radius} = this.props;
+    let height = Math.sqrt(Math.pow(radius * 2, 2) / 2);
+    let width = height;
+    let borderRadius = width/2;
+    let backgroundColor = (this.props.selected) ? '#25143F' : '#3B2164';
 
     return (
-      <View style={[styles.container, {left, top}]}>
+      <View style={[styles.container, {left, top, width, height, borderRadius, backgroundColor}]}>
         <Text style={styles.content}>{item}</Text>
       </View>
     );
@@ -20,14 +26,13 @@ class CloudItem extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 20,
     position: 'absolute',
-    width: 100,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   content: {
     color: '#FFFFFF',
-    padding: 4,
-    textAlign: 'center',
   },
 });
 

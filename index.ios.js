@@ -1,101 +1,29 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-'use strict';
-import React, {
-  AppRegistry,
-  Component,
-  PickerIOS,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import React, {AppRegistry, Navigator} from 'react-native';
+import Routes from './Routes';
+import DataFetcher from './shit/DataFetcher';
 
-import Cloud from './components/Cloud';
-import NavBar from './components/NavBar';
-import Search from './components/Search';
-import ShahmeerCloud from './components/ShahmeerCloud';
+const stuff = React.createClass({
+  componentWillMount: function() {
+    DataFetcher.fetch();
+  },
 
-const items = [
-      'Burger',
-      'Pizza',
-      'Steak',
-      'Pasta',
-      'Chinese',
-      'Japenese',
-      'Ramen',
-      'Noodles',
-      'Soup',
-      'Pizza',
-      'Burger',
-      'Chicken',
-      'Salad',
-      'Sandwich',
-      'Pasta',
-      'Fruits',
-      'Candy',
-      'Pho',
-      'Pizza',
-      'Burger',
-      'Chicken',
-      'Salad',
-      'Sandwich',
-      'Pasta',
-      'Fruits',
-      'Candy',
-      'Pho',
-      'Pizza',
-      'Burger',
-      'Chicken',
-      'Salad',
-      'Sandwich',
-      'Pasta',
-      'Fruits',
-      'Candy',
-      'Pho',
-      'Pizza',
-      'Burger',
-      'Chicken',
-      'Salad',
-      'Sandwich',
-      'Pasta',
-      'Fruits',
-      'Candy',
-      'Pho',
-    ];
-
-class surge extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      items: items
-    };
-  }
-
-  render() {
-    const typeHandler = query => {
-      this.setState({items: items.filter(item => item.startsWith(query))});
-    };
-
+  render: function() {
     return (
-      <View style={styles.container}>
-        <NavBar />
-        <ShahmeerCloud />
-        <Search onType={typeHandler} />
-      </View>
+      <Navigator
+        initialRoute={Routes[0]}
+        renderScene={(route, navigator) => {
+          console.log(route);
+          if (route.component) {
+            let props = {navigator};
+            if (route.props) {
+              props = {...props, ...route.props};
+            }
+            return React.createElement(route.component, props);
+          }
+        }}
+      />
     );
   }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#532f8c',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    flex: 1,
-  },
 });
 
-AppRegistry.registerComponent('surge', () => surge);
+AppRegistry.registerComponent('surge', () => stuff);

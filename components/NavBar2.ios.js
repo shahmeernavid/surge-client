@@ -21,10 +21,12 @@ const NavBar = React.createClass({
     if (!this.state.clicked) {
       return (
           <View style={styles.container}>
-            <Image
-              style={styles.profile}
-              source={require('../icons/profile.png')}
-            />
+            <TouchableOpacity onPress={() => this.props.navigator.pop()}>
+              <Image
+                style={styles.profile}
+                source={require('../icons/back.png')}
+              />
+            </TouchableOpacity>
             <Text style={styles.text}>
               SURGE
             </Text>
@@ -77,7 +79,7 @@ const styles = {
   },
   profile: {
     height: 25,
-    width: 25,
+    width: 15,
     marginLeft: 10,
   },
   icon: {
