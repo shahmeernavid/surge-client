@@ -29,13 +29,10 @@ export default DataFetcher = {
     return this.data.modifiers[key];
   },
 
-  orderUp: function(keywords, cb) {
-    fetch('http://surgefoodz.herokuapp.com/new_order/', {
-      method: 'PUT',
-      body: JSON.stringify({keywords})
-    })
-    .then((response) => console.log(response))
-    .catch(error => {console.log(error); alert(error)})
+  orderUp: function(keywords, desc, cb) {
+    fetch('http://surgefoodz.herokuapp.com/new_order?description='+desc+'&keywords='+keywords.join(',')+'&username='+this.data.email)
+      .then((response) => cb())
+      .catch(error => {console.log(error); alert(error)})
   },
 
   fetchedKeywords: false,
