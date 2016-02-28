@@ -15,6 +15,7 @@ import React, {
 import Cloud from './components/Cloud';
 import NavBar from './components/NavBar';
 import Search from './components/Search';
+import ShahmeerCloud from './components/ShahmeerCloud';
 
 const items = [
       'Burger',
@@ -81,7 +82,7 @@ class surge extends Component {
     return (
       <View style={styles.container}>
         <NavBar />
-        <Cloud items={items} />
+        <ShahmeerCloud />
         <Search onType={typeHandler} />
       </View>
     );

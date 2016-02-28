@@ -1,10 +1,10 @@
 const Renderer = {
     create: function() {
-        return { controller: MyRenderer };
+      return { controller: Renderer };
     },
 
     world: function(engine) {
-        // your code here to render engine.world
+      // console.log('STUFFF is happening');
     }
 };
 
